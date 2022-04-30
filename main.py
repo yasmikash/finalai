@@ -6,9 +6,10 @@ from flask import Flask, request, jsonify
 # define a flask app
 app = Flask(__name__)
 
+model = pickle.load(open('models/final_ai_model.pkl', 'rb'))
+
 @app.route('/status',methods=['POST'])
 def status():
-    model = pickle.load(open('models/final_ai_model.pkl', 'rb'))
     # get the data from the POST request.
     data = request.get_json(force=True)
     # make prediction using model loaded from disk as per the data.
